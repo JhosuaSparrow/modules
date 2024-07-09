@@ -8,11 +8,11 @@
 
 ## API 说明
 
-> 接口说明见 [common用户指导手册 GPIOCtrl](./common用户指导手册.md#GPIOCtrl)
+> 接口说明见 [common_API参考手册](./common_API参考手册.md#GPIOCtrl)。
 
 ## 使用示例
 
-> 此处以 LED 灯为例，Buzzer 蜂鸣器以此类推
+> 此处以 LED 灯为例，蜂鸣器以此类推。
 
 ```python
 from led import LED
