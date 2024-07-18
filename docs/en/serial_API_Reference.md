@@ -65,10 +65,10 @@ serial.write(b'hello world!')
 # Non-blocking mode read, behavior is consistent with `machine.UART.read`
 r_data = serial.read(1024)  # timeout keyword parameter defaults to 0
 
-# Blocking read. Reads until 1024 bytes are read. (If the specified bytes are not read, it will block indefinitely.)
+# block read, until get some data, (return real bytes recved)
 r_data = serial.read(1024, timeout=-1)
 
-# Blocking read. Returns immediately after reading the specified bytes. (If the specified bytes are not read within the timeout (ms), it returns the actual read bytes.)
+# block read, until get some data or timeout, (return real bytes recved)
 r_data = serial.read(1024, timeout=1000)
 ```
 

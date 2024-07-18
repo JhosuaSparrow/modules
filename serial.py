@@ -64,19 +64,14 @@ class Serial(object):
         """
         read from uart port with block or noblock mode.
         :param size: int, N bytes you want to read. if read enough bytes, return immediately.
-        :param timeout: int(ms). =0 for no blocking, <0 for block forever, >0 for block until timeout.
+        :param timeout: int(ms). =0 for no blocking, <0 for block forever until data come, >0 for block until timeout.
         :return: bytes actually read.
         """
         if timeout == 0:
             return self.__uart.read(size)
 
-        r_data = b''
         with TimerContext(timeout, self.__timer_cb):
-            while len(r_data) < size:
-                raw = self.__uart.read(1)
-                if not raw:
-                    if self.__cond.wait():
-                        break
-                else:
-                    r_data += raw
+            r_data = self.__uart.read(size)
+            if not r_data:
+                self.__cond.wait()
         return r_data

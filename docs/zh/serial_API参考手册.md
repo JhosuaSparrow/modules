@@ -65,7 +65,7 @@ serial.write(b'hello world!')
 # 非阻塞模式读，行为与`machine.UART.read`一致
 r_data = serial.read(1024)  # timeout关键字参数默认为0
 
-# 阻塞读。直到读取1024字节。（若未读取满指定字节，则永远阻塞等待。）
+# 阻塞读。直到读到数据或者超时。（超时timeout(ms)后仍未有数据，则返回。）
 r_data = serial.read(1024, timeout=-1)
 
 # 阻塞读。读满指定字节则立刻返回。（超时timeout(ms)后仍未读满指定字节，则返回实际读取字节。）
