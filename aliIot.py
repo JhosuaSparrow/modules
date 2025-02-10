@@ -65,7 +65,8 @@ class AliIot:
         self.__device_secret = device_secret if device_secret else None
         self.__domain = server
         self.__qos = qos
-        self.__server = "%s.%s" % (self.__product_key, self.__domain)
+        self.__url = "%s.%s" % (self.__product_key, self.__domain)
+        self.__server = None
 
         if self.__product_secret is None and self.__device_secret is None:
             raise ValueError("Neither product_secret nor device_secret exist.")
@@ -227,8 +228,8 @@ class AliIot:
         log.debug("self.__product_secret: %s" % self.__product_secret)
         log.debug("self.__device_name: %s" % self.__device_name)
         log.debug("self.__device_secret: %s" % self.__device_secret)
-        log.debug("self.__server: %s" % self.__server)
-        self.__server = aLiYun(self.__product_key, self.__product_secret, self.__device_name, self.__device_secret, self.__server)
+        log.debug("self.__url: %s" % self.__url)
+        self.__server = aLiYun(self.__product_key, self.__product_secret, self.__device_name, self.__device_secret, self.__url)
         res = self.__server.setMqtt(self.__device_name)
         if res == 0:
             self.__server.setCallback(self.__subscribe_callback)
